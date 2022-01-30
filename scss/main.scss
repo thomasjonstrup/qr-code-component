@@ -1,0 +1,46 @@
+@charset 'utf-8';
+
+// Base: contained within this file are all your resets, variables, mixins, and any utility classes.
+@import "_base.scss";
+
+@keyframes slideUp {
+	from {
+		transform: translate(0, 40px);
+	}
+
+	to {
+		transform: translate(0, 0);
+	}
+}
+
+.qrcode {
+	max-width: 330px;
+	padding: 1.8rem;
+	border-radius: 2rem;
+	display: flex;
+	flex-direction: column;
+	background-color: $white;
+	box-shadow: 0 25px 25px 0 #0000001f;
+	gap: 2rem;
+
+	animation-duration: 1.5s;
+	animation-name: slideUp;
+
+	&__texts {
+		text-align: center;
+	}
+
+	&__description {
+		padding: 0 1.6rem;
+	}
+
+	&__heading {
+		font-size: 2.3rem;
+		padding: 0 1.25rem;
+	}
+
+	&__image {
+		border-radius: 2rem;
+		overflow: hidden;
+	}
+}

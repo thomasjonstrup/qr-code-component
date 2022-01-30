@@ -1,0 +1,357 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap");
+$font-family: "Outfit", sans-serif;
+// colors
+$dark-blue: hsl(218, 44%, 22%);
+$grayish-blue: hsl(220, 15%, 55%);
+$light-grey: hsl(212, 45%, 89%);
+$white: hsl(0, 0%, 100%);
+
+// Reset
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*:before,
+*:after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/*
+    3. Allow percentage-based heights in the application
+  */
+html,
+body {
+	height: 100%;
+}
+
+html {
+	font-size: 62.5%; // 1rem = 10px
+}
+
+body {
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+}
+
+/*
+    6. Improve media defaults
+  */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/*
+    7. Remove built-in form typography styles
+  */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+/*
+    8. Avoid text overflows
+  */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+body {
+	font-size: 1.5rem;
+	font-family: $font-family;
+	color: $dark-blue;
+	background-color: $light-grey;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-content: center;
+	justify-content: center;
+	padding: 0 2rem;
+	align-items: center;
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+h1,
+h2 {
+	line-height: 1.2;
+}
+
+p {
+	margin: 10px 0;
+}
+
+img {
+	width: 100%;
+}
+
+main {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+$breakpoints-up: (
+	"md": "750px",
+	"ld": "1024px",
+	"xd": "1376px",
+);
+
+$breakpoints-down: (
+	"md": "750px",
+	"ld": "1024px",
+	"xd": "1376px",
+);
+
+// Mixins
+@mixin breakpoint-up($size) {
+	@media screen and (min-width: map-get($breakpoints-up, $size)) {
+		@content;
+	}
+}
+@mixin breakpoint-down($size) {
+	@media screen and (max-width: map-get($breakpoints-down, $size)) {
+		@content;
+	}
+}
+
+@function calculateRem($size) {
+	$remSize: $size / 16px;
+	@return #{$remSize}rem;
+}
+
+// 640px, 1024px, 1400px
+$breakpoints-up: (
+	/* 	"medium": "40em",
+	"large": "64em",
+	"xlarge": "87.5em", */ "medium": "640px",
+	"large": "1024px",
+	"xlarge": "1400px"
+);
+
+// 639px, 1023px, 1399px
+$breakpoints-down: (
+	/* 	"small": "39.9375em",
+	"medium": "63.9375em",
+	"large": "87.4375em", */
+		"small": "639px",
+	"medium": "1023px",
+	"large": "1399px"
+);
+
+@mixin breakpoint-up($size) {
+	@media (min-width: map-get($breakpoints-up, $size)) {
+		@content;
+	}
+}
+
+@mixin breakpoint-down($size) {
+	@media (max-width: map-get($breakpoints-down, $size)) {
+		@content;
+	}
+}
+
+/// BEM mixins
+
+/// Block Element
+/// @param {String} $element - Element's name
+@mixin element($element) {
+	&__#{$element} {
+		@content;
+	}
+}
+
+/// Block Modifier
+/// @param {String} $modifier - Modifier's name
+@mixin modifier($modifier) {
+	&--#{$modifier} {
+		@content;
+	}
+}
+
+// Visibility
+.hide-for-mobile {
+	@include breakpoint-down(small) {
+		display: none;
+	}
+}
+
+.hide-for-desktop {
+	@include breakpoint-up(medium) {
+		display: none;
+	}
+}
+
+/* Utilities */
+.container {
+	max-width: 1100px;
+	margin: 0 auto;
+	overflow: auto;
+	padding: 0 40px;
+
+	/*
+		position: relative;
+	width: 100%;
+	max-width: 570px;
+	margin: 0 auto;
+	padding: 0 2.4rem;
+	*/
+}
+
+/* Text colors */
+/* .text-primary {
+	color: $primary-color;
+} */
+
+/* .text-secondary {
+	color: $secondary-color;
+}
+
+.text-dark {
+	color: $dark-color;
+}
+
+.text-light {
+	color: $light-color;
+} */
+
+/* Text sizes */
+.lead {
+	font-size: 20px;
+}
+
+.sm {
+	font-size: 1rem;
+}
+
+.lead {
+	font-size: 2rem;
+}
+
+.lg {
+	font-size: 3rem;
+}
+
+.xl {
+	font-size: 4rem;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.flex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+
+	&-3 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+/* Margin */
+.my {
+	&-1 {
+		margin: 1rem 0;
+	}
+	&-2 {
+		margin: 1.5rem 0;
+	}
+	&-3 {
+		margin: 2rem 0;
+	}
+	&-4 {
+		margin: 3rem 0;
+	}
+	&-5 {
+		margin: 4rem 0;
+	}
+}
+
+.m {
+	&-1 {
+		margin: 1rem;
+	}
+	&-2 {
+		margin: 1.5rem;
+	}
+	&-3 {
+		margin: 2rem;
+	}
+	&-4 {
+		margin: 3rem;
+	}
+	&-5 {
+		margin: 4rem;
+	}
+}
+
+/* Padding */
+.py {
+	&-1 {
+		padding: 1rem 0;
+	}
+	&-2 {
+		padding: 1.5rem 0;
+	}
+	&-3 {
+		padding: 2rem 0;
+	}
+	&-4 {
+		padding: 3rem 0;
+	}
+	&-5 {
+		padding: 4rem 0;
+	}
+}
+
+.p {
+	&-1 {
+		padding: 1rem;
+	}
+	&-2 {
+		padding: 1.5rem;
+	}
+	&-3 {
+		padding: 2rem;
+	}
+	&-4 {
+		padding: 3rem;
+	}
+	&-5 {
+		padding: 4rem;
+	}
+}
