@@ -32,6 +32,7 @@
 
 	&__description {
 		padding: 0 1.6rem;
+		color: $grey;
 	}
 
 	&__heading {
@@ -42,5 +43,15 @@
 	&__image {
 		border-radius: 2rem;
 		overflow: hidden;
+	}
+}
+
+.attribution {
+	font-size: 11px;
+	text-align: center;
+	padding-top: 1rem;
+
+	&__link {
+		color: $dark-blue;
 	}
 }
